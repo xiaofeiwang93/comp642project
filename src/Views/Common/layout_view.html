@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarToggler">
           <ul class="navbar-nav ms-auto" style="padding-right: 20%;">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Student Home</a>
+              <a class="nav-link" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -64,17 +64,19 @@
       </div>
     </nav>
 
-    <main style="height: max-content; padding-bottom: 200px;">
-      {% with messages = get_flashed_messages() %}
-      {% if messages %}
-      {% for message in messages %}
-      <h2 style="text-align: center;">
+    <main style="height: max-content;">
+      <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <h2 style="text-align: center;">
           {{ message }}
-      </h2>
-      {% endfor %}
-      {% endif %}
-      {% endwith %}
-      {% block content %}{% endblock %}
+        </h2>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+      </div>
     </main>
     
     <!-- Footer -->
