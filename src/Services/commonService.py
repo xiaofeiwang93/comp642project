@@ -6,6 +6,13 @@ def home():
     except Exception as e:
         print(e)
         return raise_error(e)
+    
+def movieList():
+    try:
+        return render_template('./Movies/movie_list.html')
+    except Exception as e:
+        print(e)
+        return raise_error(e)
 
 def  raise_error(e):
     print(e)
