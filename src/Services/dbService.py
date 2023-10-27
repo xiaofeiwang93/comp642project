@@ -214,31 +214,3 @@ def db_initial_insert_movie_meida():
 
     for record in movie_media_records:
         add_record(movieMediaDbName, record)
-
-
-# Usage example
-if __name__ == "__main__":
-    # Create the CSV file if it doesn't exist
-    create_csv_file()
-
-    # Add a new record
-    new_record = ["001", "Alice", "30"]
-    add_record(new_record)
-
-    # Read all records
-    all_records = read_all_records()
-    print("All Records:")
-    for record in all_records:
-        print(record)
-
-    # Search for a record by ID
-    search_id = "001"
-    found_record = search_record_by_id(search_id)
-    print(f"Record with ID {search_id}: {found_record}")
-
-    # Update a record
-    update_id = "001"
-    updated_data = {"Name": "Alicia", "Age": "31"}
-    update_record_by_id(update_id, updated_data)
-    print("Updated Record:")
-    print(search_record_by_id(update_id))
