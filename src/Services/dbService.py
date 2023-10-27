@@ -84,6 +84,9 @@ def db_initial_setup_movie():
     create_csv_file(movieDbName, movieDbColumns)
     db_initial_insert_movie()
 
+    create_csv_file(movieMediaDbName, movieMediaDbColumns)
+    db_initial_insert_movie_meida()
+
 def db_initial_insert_movie():
     # Define a list of movie records
     movie_records = [
@@ -165,6 +168,52 @@ def db_initial_insert_movie():
     for record in movie_records:
         add_record(movieDbName, record)
 
+def db_initial_insert_movie_meida():
+    movie_media_records = [
+        {
+            'movieid': "1",
+            'cardsrcaddress': "../../static/Cards/TheNunII.jpg",
+            'detailbanneraddress': "../static/MovieDetailBanner/TheNunII.jpg"
+        },
+        {
+            'movieid': "2",
+            'cardsrcaddress': "../../static/Cards/FiveNightsatFreddy.jpg",
+            'detailbanneraddress': "../static/MovieDetailBanner/FiveNightsatFreddy.jpg"
+        },
+        {
+            'movieid': "3",
+            'cardsrcaddress': "../../static/Cards/KillersoftheFlowerMoon.jpg",
+            'detailbanneraddress': "../static/MovieDetailBanner/KillersoftheFlowerMoon.jpg"
+        },
+        {
+            'movieid': "4",
+            'cardsrcaddress': "../../static/Cards/Uproar.jpg",
+            'detailbanneraddress': "../static/MovieDetailBanner/Uproar.jpg"
+        },
+        {
+            'movieid': "5",
+            'cardsrcaddress': "../../static/Cards/TaylorSwift.jpg",
+            'detailbanneraddress': "../static/MovieDetailBanner/TaylorSwift.jpg"
+        },
+        {
+            'movieid': "6",
+            'cardsrcaddress': "../../static/Cards/Oppenheimer.jpg",
+            'detailbanneraddress': "../static/MovieDetailBanner/Oppenheimer.jpg"
+        },
+        {
+            'movieid': "7",
+            'cardsrcaddress': "../../static/Cards/SawX.jpg",
+            'detailbanneraddress': "../static/MovieDetailBanner/SawX.jpg"
+        },
+        {
+            'movieid': "8",
+            'cardsrcaddress': "../../static/Cards/TheCreator.jpg",
+            'detailbanneraddress': "../static/MovieDetailBanner/TheCreator.jpg"
+        }
+    ]
+
+    for record in movie_media_records:
+        add_record(movieMediaDbName, record)
 
 
 # Usage example
