@@ -1,5 +1,6 @@
 from flask import Flask
 from Services.commonService import home, movieDetail, movieList
+from Services.dbService import create_csv_file, db_initial_setup_movie
 from Services.loginService import login
 
 def create_app(test_config = None):
@@ -16,6 +17,8 @@ def create_app(test_config = None):
     app.add_url_rule('/movies', methods=both, view_func=movieList)
 
     app.add_url_rule('/movies/1', methods=both, view_func=movieDetail)
+
+    db_initial_setup_movie()
 
     return app
 
