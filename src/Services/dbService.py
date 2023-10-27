@@ -9,6 +9,29 @@ def create_csv_file():
         writer = csv.writer(file)
         writer.writerow(["ID", "Name", "Age"])
 
+def get_next_id(filename):
+    try:
+        with open(filename, 'r', newline='') as file:
+            reader = csv.DictReader(file)
+            existing_ids = [int(row['ID']) for row in reader]
+
+        return max(existing_ids) + 1
+    except FileNotFoundError:
+        return 1  # If the file doesn't exist, start with 1 as the first ID
+
+def add_record(filename, record):
+    next_id = get_next_id(filename)
+    record['ID'] = next_id
+
+    with open(filename, 'a', newline='') as file:
+        fieldnames = record.keys()
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+
+        if file.tell() == 0:  # If the file is empty, write the header row
+            writer.writeheader()
+
+        writer.writerow(record)
+
 # Function to add a new record to the CSV
 def add_record(record):
     with open(csv_file, mode="a", newline="") as file:

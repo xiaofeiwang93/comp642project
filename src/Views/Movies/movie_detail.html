@@ -1,0 +1,65 @@
+{% extends "./Common/layout_view.html" %}
+{% block content %}
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="../static/MovieDetailBanner/TheNunII.jpg" class="d-block w-100" alt="...">
+        </div>
+    </div>
+</div>
+
+<div class="row" >
+    <div class="col-4" style="margin: 20px 0 20px 0;">
+        <div class="col-md-4" style="width: 100%;">
+            <img src="../../static/Cards/TheNunII.jpg" style="max-width: 320px;" class="img-fluid rounded-start" alt="The Nun II">
+        </div>
+    </div>
+    <div class="col-8 text-left" style="margin: 20px 0 20px 0; padding-left: 50px;">
+        <h1>The Num II <button style="margin-left: 10px; margin-bottom: 12px;" type="button" class="btn btn-warning">M</button></h1>
+        
+        <p>1956 - France. A priest is murdered. An evil is spreading. The sequel to the worldwide smash hit follows Sister Irene as she once again comes face-to-face with Valak, the demon nun.</p>
+        <div class="row" style="padding-top: 20px;">
+            <h6>Release Date:     <span style="margin-left: 10px;">07/09/2023</span></h6>
+            <h6>Running Time:     <span style="margin-left: 10px;">110 mins</span></h6>
+            <h6>Director:         <span style="margin-left: 10px;">Michael Chaves</span></h6>
+            <h6>Cast:             <span style="margin-left: 10px;">Bonnie Aarons, Katelyn Rose Downey, Taissa Farmiga, Anna Popplewell, Storm Reid</span></h6>
+        </div>
+    </div>
+</div>
+
+<div style="margin: 20px 0 20px 0;">
+    <nav class="nav nav-underline">
+        <a class="nav-link active" aria-current="page" href="#">Today</a>
+        <a class="nav-link" href="#">Tomorrow</a>
+        <a class="nav-link" href="#">Sat 28/10</a>
+        <a class="nav-link" href="#">Sun 29/10</a>
+        <a class="nav-link" href="#">Mon 30/10</a>
+        <a class="nav-link" href="#">Tue 31/10</a>
+        <a class="nav-link" href="#">Wed 01/11</a>
+        <a class="nav-link" href="#">Thu 02/11</a>
+        <a class="nav-link" href="#">Fri 03/11</a>
+        <a class="nav-link" href="#">Sat 24/11</a>
+        <a class="nav-link" href="#">Sun 25/11</a>
+    </nav>
+
+    <div class="col-md-8" style="margin: 20px 0 20px 0; width: 100%;">
+        <button type="button" class="btn btn-secondary btn-sm">12:20 PM</button>
+        <button type="button" class="btn btn-secondary btn-sm">2:55 PM</button>
+        <button type="button" class="btn btn-secondary btn-sm">5:30 PM</button>
+        <button type="button" class="btn btn-secondary btn-sm">6:00 PM</button>
+    </div>
+</div>
+
+
+<style>
+    .nav-link {
+        color: rgb(69, 67, 67);
+    }
+
+    .btn {
+        margin: 2px;
+    }
+
+</style>
+{% endblock %}
