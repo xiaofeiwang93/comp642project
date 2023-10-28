@@ -24,10 +24,13 @@ class MovieTicketController:
     def home(self):
         self.common_service.home()
         return render_template('home.html')
+    
+    def search_movie():
+        print("############  inside search movie")
 
     def view_movie_list(self):
-        #self.dbService.read_all_records(self.dbService)
-        self.common_service.movieList()
+        movie_list = self.db_service.read_all_records(self.db_service.movieDbName)
+        print(movie_list[0])
         return render_template('./Movies/movie_list.html')
     
     def view_movie_detail(self):

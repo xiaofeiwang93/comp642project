@@ -1,17 +1,19 @@
 import csv
 
-database_path = "./Database/"
-
-movieDbName = f"{database_path}movie.csv"
-movieDbColumns = ["id", "title", "description", "duration_mins", "language", "release_date", "country", "genre"]
-
-movieMediaDbName = f"{database_path}movieMedia.csv"
-movieMediaDbColumns = ["id", "movieid", "cardsrcaddress", "detailbanneraddress"]
-
-screeningDbName = f"{database_path}screening.csv"
-screeningDbNameColumns = ["id", "movieid", "date", "starttime", "endtime", "hallid"]
+from ViewModels.MovieViewModel import MovieViewModel
 
 class DbService:
+    database_path = "./Database/"
+
+    movieDbName = f"{database_path}movie.csv"
+    movieDbColumns = ["id", "title", "description", "duration_mins", "language", "release_date", "country", "genre"]
+
+    movieMediaDbName = f"{database_path}movieMedia.csv"
+    movieMediaDbColumns = ["id", "movieid", "cardsrcaddress", "detailbanneraddress"]
+
+    screeningDbName = f"{database_path}screening.csv"
+    screeningDbNameColumns = ["id", "movieid", "date", "starttime", "endtime", "hallid"]
+
     # Function to create the initial CSV file
     def create_csv_file(databaseName, columnNameList):
         with open(databaseName, mode="w", newline="") as file:
@@ -215,3 +217,23 @@ class DbService:
 
         for record in movie_media_records:
             add_record(movieMediaDbName, record, movieMediaDbColumns)
+
+    def map_movie_view_model(movie_list):
+        movie_view_models = []
+
+        for movie_info in movie_list:
+            movie = MovieViewModel()
+            movie.id = movie_info.get('id')
+            movie.title = movie_info.get('title')
+            movie.description = movie_info.get('description')
+            movie.duration_mins = movie_info.get('duration_mins')
+            movie.language = movie_info.get('language')
+            movie.release_date = movie_info.get('release_date')
+            movie.country = movie_info.get('country')
+            movie.genre = movie_info.get('genre')
+            movie.cardsrcaddress = movie_info.get('cardsrcaddress')
+            movie.detailbanneraddress = movie_info.get('detailbanneraddress')
+
+            movie_view_models.append(movie)
+
+        return movie_view_models
