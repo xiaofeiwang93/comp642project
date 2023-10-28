@@ -1,7 +1,8 @@
 from flask import Flask
-from Services.commonService import home, movieDetail, movieList
-from Services.dbService import create_csv_file, db_initial_setup_movie
-from Services.loginService import login
+from Controllers.TicketingController import MovieTicketController
+from Services.CommonService import CommonService
+from Services.DbService import DbService
+from Services.LoginService import LoginService
 
 def create_app(test_config = None):
     get=['GET']
@@ -10,15 +11,17 @@ def create_app(test_config = None):
 
     app = Flask(__name__, template_folder='views')
 
-    app.add_url_rule('/', methods=both, view_func=login)
+    ticketing_controller = MovieTicketController(DbService, LoginService, CommonService)
 
-    app.add_url_rule('/home', methods=both, view_func=home)
+    app.add_url_rule('/', methods=both, view_func=ticketing_controller.login)
 
-    app.add_url_rule('/movies', methods=both, view_func=movieList)
+    app.add_url_rule('/home', methods=both, view_func=ticketing_controller.home)
 
-    app.add_url_rule('/movies/1', methods=both, view_func=movieDetail)
+    app.add_url_rule('/movies', methods=both, view_func=ticketing_controller.view_movie_list)
 
-    db_initial_setup_movie()
+    app.add_url_rule('/movies/1', methods=both, view_func=ticketing_controller.view_movie_detail)
+
+    # db_initial_setup_movie()
 
     return app
 

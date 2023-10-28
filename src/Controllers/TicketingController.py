@@ -1,18 +1,38 @@
 from datetime import datetime
 from typing import List
+
+from flask import render_template
 from Models.Bookings.Booking import Booking
 from Models.Movies.Movie import Movie
 from Models.Movies.Screening import Screening
-from Models.TicketingSystem import TicketingSystem
 
 class MovieTicketController:
-    def __init__(self, ticket_system: TicketingSystem) -> None:
+    def __init__(self, db_service, login_service, common_service) -> None:
         """!
         Constructor for the MovieTicketController class.
 
         :param ticket_system: An instance of the MovieTicketSystem.
         """
-        pass
+        self.db_service = db_service
+        self.login_service = login_service
+        self.common_service = common_service
+
+    def login(self):
+        self.login_service.login()
+        return render_template('Common/login_view.html')
+    
+    def home(self):
+        self.common_service.home()
+        return render_template('home.html')
+
+    def view_movie_list(self):
+        #self.dbService.read_all_records(self.dbService)
+        self.common_service.movieList()
+        return render_template('./Movies/movie_list.html')
+    
+    def view_movie_detail(self):
+        self.common_service.movieDetail()
+        return render_template('./Movies/movie_detail.html')
 
     def search_movies(self, title: str, language: str, genre: str, release_date: datetime) -> List[Movie]:
         """!
