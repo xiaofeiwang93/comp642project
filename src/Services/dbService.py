@@ -52,32 +52,32 @@ class DbService:
         file.close()
 
     # Function to read all records from the CSV
-    def read_all_records(csv_file):
+    def read_all_records(tableName):
         records = []
-        with open(csv_file, mode="r") as file:
+        with open(tableName, mode="r") as file:
             reader = csv.DictReader(file)
             for row in reader:
                 records.append(row)
         return records
 
     # Function to search for a record by ID
-    def search_record_by_id(search_id, csv_file):
-        with open(csv_file, mode="r") as file:
+    def search_record_by_id(search_id, tableName):
+        with open(tableName, mode="r") as file:
             reader = csv.DictReader(file)
             for row in reader:
-                if row["ID"] == search_id:
+                if row["id"] == search_id:
                     return row
         return None
 
     # Function to update a record by ID
-    def update_record_by_id(update_id, new_data, columnNameList, csv_file):
+    def update_record_by_id(update_id, new_data, columnNameList, tableName):
         records = read_all_records()
         for record in records:
             if record["ID"] == update_id:
                 record.update(new_data)
                 break
 
-        with open(csv_file, mode="w", newline="") as file:
+        with open(tableName, mode="w", newline="") as file:
             writer = csv.DictWriter(file, fieldnames=columnNameList)
             writer.writeheader()
             for record in records:
@@ -130,7 +130,7 @@ class DbService:
                 'genre': "Comedy"
             },
             {
-                'title': "Taylor Swift | The Eras Tour",
+                'title': "The Eras Tour",
                 'description': "The cultural phenomenon continues on the big screen! Immerse yourself in this once-in-a-lifetime concert film experience with a breathtaking, cinematic view of the history-making tour. Taylor Swift Eras attire and friendship bracelets are strongly encouraged!",
                 'duration_mins': 168,
                 'language': "English",
@@ -217,23 +217,3 @@ class DbService:
 
         for record in movie_media_records:
             add_record(movieMediaDbName, record, movieMediaDbColumns)
-
-    def map_movie_view_model(movie_list):
-        movie_view_models = []
-
-        for movie_info in movie_list:
-            movie = MovieViewModel()
-            movie.id = movie_info.get('id')
-            movie.title = movie_info.get('title')
-            movie.description = movie_info.get('description')
-            movie.duration_mins = movie_info.get('duration_mins')
-            movie.language = movie_info.get('language')
-            movie.release_date = movie_info.get('release_date')
-            movie.country = movie_info.get('country')
-            movie.genre = movie_info.get('genre')
-            movie.cardsrcaddress = movie_info.get('cardsrcaddress')
-            movie.detailbanneraddress = movie_info.get('detailbanneraddress')
-
-            movie_view_models.append(movie)
-
-        return movie_view_models

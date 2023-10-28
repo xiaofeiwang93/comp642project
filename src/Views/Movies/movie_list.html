@@ -33,16 +33,17 @@
 
 <div class="row" >
     <div class="col-8" style="margin: 20px 0 20px 0;">
+        {% for movie in movie_list %}
         <div class="card mb-3" style="max-width: 600px;">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <a href="/movies/1">
-                        <img src="../../static/Cards/TheNunII.jpg" class="img-fluid rounded-start" alt="The Nun II">
+                    <a href="/movies/{{ movie.id }}">
+                        <img src="{{ movie._cardsrcaddress }}" class="img-fluid rounded-start" alt="{{ movie.title }}">
                     </a>
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">The Nun II</h5>
+                        <h5 class="card-title">{{ movie.title }}</h5>
                         <button type="button" class="btn btn-secondary btn-sm">12:20 PM</button>
                         <button type="button" class="btn btn-secondary btn-sm">2:55 PM</button>
                         <button type="button" class="btn btn-secondary btn-sm">5:30 PM</button>
@@ -51,129 +52,7 @@
                 </div>
             </div>
         </div>
-        
-        <div class="card mb-3" style="max-width: 600px;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <a href="/movies/1">
-                        <img src="../../static/Cards/FiveNightsatFreddy.jpg" class="img-fluid rounded-start" alt="Five Nights at Freddy's">
-                    </a>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Five Nights at Freddy's</h5>
-                        <button type="button" class="btn btn-secondary btn-sm">12:20 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">2:55 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">5:30 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">6:00 PM</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card mb-3" style="max-width: 600px;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="../../static/Cards/KillersoftheFlowerMoon.jpg" class="img-fluid rounded-start" alt="Killers of the Flower Moon">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Killers of the Flower Moon</h5>
-                        <button type="button" class="btn btn-secondary btn-sm">12:20 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">2:55 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">5:30 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">6:00 PM</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card mb-3" style="max-width: 600px;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <a href="/movies/1">
-                        <img src="../../static/Cards/Oppenheimer.jpg" class="img-fluid rounded-start" alt="Killers of the Flower Moon">
-                    </a>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Oppenheimer</h5>
-                        <button type="button" class="btn btn-secondary btn-sm">12:20 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">2:55 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">5:30 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">6:00 PM</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card mb-3" style="max-width: 600px;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="../../static/Cards/SawX.jpg" class="img-fluid rounded-start" alt="Saw X">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Saw X</h5>
-                        <button type="button" class="btn btn-secondary btn-sm">12:20 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">2:55 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">5:30 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">6:00 PM</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card mb-3" style="max-width: 600px;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="../../static/Cards/TaylorSwift.jpg" class="img-fluid rounded-start" alt="Taylor Swift | The Eras Tour">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Taylor Swift | The Eras Tour</h5>
-                        <button type="button" class="btn btn-secondary btn-sm">12:20 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">2:55 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">5:30 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">6:00 PM</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card mb-3" style="max-width: 600px;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="../../static/Cards/TheCreator.jpg" class="img-fluid rounded-start" alt="The Creator">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">The Creator</h5>
-                        <button type="button" class="btn btn-secondary btn-sm">12:20 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">2:55 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">5:30 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">6:00 PM</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card mb-3" style="max-width: 600px;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="../../static/Cards/Uproar.jpg" class="img-fluid rounded-start" alt="Uproar">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Uproar</h5>
-                        <button type="button" class="btn btn-secondary btn-sm">12:20 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">2:55 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">5:30 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">6:00 PM</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
     <div class="col-4" style="margin: 20px 0 20px 0;">
         <form>

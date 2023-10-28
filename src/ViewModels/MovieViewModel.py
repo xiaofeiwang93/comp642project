@@ -30,6 +30,14 @@ class MovieViewModel:
         self._cardsrcaddress = None
         self._detailbanneraddress = None
 
+    def __str__(self):
+        return f"Movie ID: {self.id}\nTitle: {self.title}\nDescription: {self.description}\n" \
+            f"Duration (mins): {self.duration_mins}\nLanguage: {self.language}\n" \
+            f"Release Date: {self.release_date}\nCountry: {self.country}\n" \
+            f"Genre: {self.genre}\nCard Source Address: {self.cardsrcaddress}\n" \
+            f"Detail Banner Address: {self.detailbanneraddress}"
+
+
     @property
     def id(self):
         """!

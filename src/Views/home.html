@@ -16,83 +16,20 @@
 </div>
 
 <div style="margin: 20px 0 20px 0;">
-    <div class="row">
+<div class="row">
+    {% for movie in movie_list %}
         <div class="col-md-3">
-            <div class="card" style="width: 17rem;">
-                <img src="../static/Cards/TheNunII.jpg" class="card-img-top" alt="The Nun II" style="height: 24rem;">
+            <div class="card" style="width: 17rem; margin-top: 20px;">
+                <img src="{{ movie.cardsrcaddress }}" class="card-img-top" alt="{{ movie.title }}" style="height: 24rem;">
                 <div class="card-body">
-                    <h5 class="card-title">The Nun II</h5>
+                    <h5 class="card-title">{{ movie.title }}</h5>
                     <a href="#" class="btn btn-dark">Book Now</a>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card" style="width: 17rem;">
-                <img src="../static/Cards/FiveNightsatFreddy.jpg" class="card-img-top" alt="Five Nights at Freddy's" style="height: 24rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Five Nights at Freddy's</h5>
-                    <a href="#" class="btn btn-dark">Book Now</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card" style="width: 17rem;">
-                <img src="../static/Cards/KillersoftheFlowerMoon.jpg" class="card-img-top" alt="Killers of the Flower Moon" style="height: 24rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Killers of the Flower Moon</h5>
-                    <a href="#" class="btn btn-dark">Book Now</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card" style="width: 17rem;">
-                <img src="../static/Cards/Oppenheimer.jpg" class="card-img-top" alt="Oppenheimer" style="height: 24rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Oppenheimer</h5>
-                    <a href="#" class="btn btn-dark">Book Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="row" style="margin-top: 20px;">
-        <div class="col-md-3">
-            <div class="card" style="width: 17rem;">
-                <img src="../static/Cards/SawX.jpg" class="card-img-top" alt="Saw X" style="height: 24rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Saw X</h5>
-                    <a href="#" class="btn btn-dark">Book Now</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card" style="width: 17rem;">
-                <img src="../static/Cards/TaylorSwift.jpg" class="card-img-top" alt="Taylor Swift | The Eras Tour" style="height: 24rem;">
-                <div class="card-body">
-                    <h5 class="card-title">The Eras Tour</h5>
-                    <a href="#" class="btn btn-dark">Book Now</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card" style="width: 17rem;">
-                <img src="../static/Cards/TheCreator.jpg" class="card-img-top" alt="The Creator" style="height: 24rem;">
-                <div class="card-body">
-                    <h5 class="card-title">The Creator</h5>
-                    <a href="#" class="btn btn-dark">Book Now</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card" style="width: 17rem;">
-                <img src="../static/Cards/Uproar.jpg" class="card-img-top" alt="Uproar" style="height: 24rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Uproar</h5>
-                    <a href="#" class="btn btn-dark">Book Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% endfor %}
+</div>
+
 </div>
 
 

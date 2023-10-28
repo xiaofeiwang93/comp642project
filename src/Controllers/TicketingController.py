@@ -7,7 +7,7 @@ from Models.Movies.Movie import Movie
 from Models.Movies.Screening import Screening
 
 class MovieTicketController:
-    def __init__(self, db_service, login_service, common_service) -> None:
+    def __init__(self, db_service, login_service, common_service, movie_service) -> None:
         """!
         Constructor for the MovieTicketController class.
 
@@ -16,22 +16,23 @@ class MovieTicketController:
         self.db_service = db_service
         self.login_service = login_service
         self.common_service = common_service
+        self.movie_service = movie_service
 
     def login(self):
         self.login_service.login()
         return render_template('Common/login_view.html')
     
     def home(self):
-        self.common_service.home()
-        return render_template('home.html')
+        movie_list = self.movie_service.get_all_movies()
+        print(movie_list.count)
+        return render_template('home.html', movie_list=movie_list)
     
     def search_movie():
         print("############  inside search movie")
 
     def view_movie_list(self):
-        movie_list = self.db_service.read_all_records(self.db_service.movieDbName)
-        print(movie_list[0])
-        return render_template('./Movies/movie_list.html')
+        movie_list = self.movie_service.get_all_movies()
+        return render_template('./Movies/movie_list.html', movie_list=movie_list)
     
     def view_movie_detail(self):
         self.common_service.movieDetail()
