@@ -15,6 +15,7 @@ class DbService:
 
     screeningDbName = f"{database_path}screening.csv"
     screeningDbNameColumns = ["id", "movieid", "date", "starttime", "endtime", "hallid"]
+    
 
     date_format = "%d/%m/%Y"
 
@@ -51,7 +52,7 @@ class DbService:
     # Function to add a new record to the CSV
     def add_record(filename, record, columnNameList):
         try:
-            next_id = get_next_id(filename)
+            next_id = DbService.get_next_id(filename)
             record['id'] = next_id
 
             with open(filename, 'a', newline='') as file:
@@ -166,11 +167,11 @@ class DbService:
                         (release_date == search_release_date and search_release_date != ''))
 
     def db_initial_setup_movie():
-        create_csv_file(movieDbName, movieDbColumns)
-        db_initial_insert_movie()
+        DbService.create_csv_file(DbService.movieDbName, DbService.movieDbColumns)
+        DbService.db_initial_insert_movie()
 
-        create_csv_file(movieMediaDbName, movieMediaDbColumns)
-        db_initial_insert_movie_meida()
+        DbService.create_csv_file(DbService.movieMediaDbName, DbService.movieMediaDbColumns)
+        DbService.db_initial_insert_movie_meida()
 
     def db_initial_insert_movie():
         # Define a list of movie records
@@ -251,7 +252,7 @@ class DbService:
 
         # Add each record to the CSV
         for record in movie_records:
-            add_record(movieDbName, record, movieDbColumns)
+            DbService.add_record(DbService.movieDbName, record, DbService.movieDbColumns)
 
     def db_initial_insert_movie_meida():
         movie_media_records = [
@@ -298,4 +299,71 @@ class DbService:
         ]
 
         for record in movie_media_records:
-            add_record(movieMediaDbName, record, movieMediaDbColumns)
+            DbService.add_record(DbService.movieMediaDbName, record, DbService.movieMediaDbColumns)
+
+    def db_initial_setup_screening():
+        DbService.create_csv_file(DbService.screeningDbName, DbService.screeningDbNameColumns)
+        DbService.db_initial_insert_screening()
+    
+    def db_initial_insert_screening():
+        screening_records = [
+            {
+                'movieid': "1",
+                'date': "07/09/2023",
+                'starttime': "10:00",
+                'endtime': "12:00",
+                'hallid': "1"
+            },
+            {
+                'movieid': "2",
+                'date': "26/10/2023",
+                'starttime': "10:00",
+                'endtime': "12:00",
+                'hallid': "2"
+            },
+            {
+                'movieid': "3",
+                'date': "19/10/2023",
+                'starttime': "10:00",
+                'endtime': "12:00",
+                'hallid': "3"
+            },
+            {
+                'movieid': "4",
+                'date': "05/10/2023",
+                'starttime': "10:00",
+                'endtime': "12:00",
+                'hallid': "4"
+            },
+            {
+                'movieid': "5",
+                'date': "13/10/2023",
+                'starttime': "10:00",
+                'endtime': "12:00",
+                'hallid': "5"
+            },
+            {
+                'movieid': "6",
+                'date': "20/07/2023",
+                'starttime': "10:00",
+                'endtime': "12:00",
+                'hallid': "6"
+            },
+            {
+                'movieid': "7",
+                'date': "28/09/2023",
+                'starttime': "10:00",
+                'endtime': "12:00",
+                'hallid': "7"
+            },
+            {
+                'movieid': "8",
+                'date': "28/09/2023",
+                'starttime': "10:00",
+                'endtime': "12:00",
+                'hallid': "8"
+            }
+        ]
+
+        for record in screening_records:
+            DbService.add_record(DbService.screeningDbName, record, DbService.screeningDbNameColumns)

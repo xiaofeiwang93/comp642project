@@ -120,9 +120,17 @@ class MovieTicketController:
         pass
 
     def cancel_booking(self, booking: Booking) -> None:
+        
         """!
         Cancel a booking and provide a refund to the customer.
 
         :param booking: The booking to be canceled.
         """
         pass
+
+    def setup_database(self):
+        """!
+        Create database tables & Setup the database with initial data.
+        """
+        self.db_service.db_initial_setup_movie()
+        self.db_service.db_initial_setup_screening()
