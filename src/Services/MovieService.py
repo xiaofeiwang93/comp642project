@@ -30,6 +30,8 @@ class MovieService:
         movie_media = DbService.search_record_by_id(movie_id, DbService.movieMediaDbName)
         MovieService.map_movie_media_view_model(movie_media, movie_view_model)
     
+    def get_movie_sc
+
     def get_movie_by_id(movie_id: int) -> MovieViewModel:
         """!
         Get a movie by ID.
@@ -105,4 +107,12 @@ class MovieService:
         """
         movie_view_model.cardsrcaddress = movie_media.get('cardsrcaddress')
         movie_view_model.detailbanneraddress = movie_media.get('detailbanneraddress')
+    
+    def map_movie_cinema_hall_view_model(movie_cinema_hall, movie_view_model) -> None:
+        """!
+        Map the movie_cinema_hall_list from dictionary into movie view model.
+
+        :return: None.
+        """
+        
 

@@ -367,3 +367,7 @@ class DbService:
 
         for record in screening_records:
             DbService.add_record(DbService.screeningDbName, record, DbService.screeningDbNameColumns)
+
+    def setup_database():
+        DbService.db_initial_setup_movie()
+        DbService.db_initial_setup_screening()

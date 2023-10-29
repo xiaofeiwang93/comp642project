@@ -127,10 +127,3 @@ class MovieTicketController:
         :param booking: The booking to be canceled.
         """
         pass
-
-    def setup_database(self):
-        """!
-        Create database tables & Setup the database with initial data.
-        """
-        self.db_service.db_initial_setup_movie()
-        self.db_service.db_initial_setup_screening()

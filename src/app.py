@@ -26,7 +26,7 @@ def create_app(test_config = None):
 
     app.add_url_rule('/movies/search/title', methods=both, view_func=ticketing_controller.search_movies_by_title)
 
-    ticketing_controller.setup_database()
+    DbService.setup_database()
 
     return app
 

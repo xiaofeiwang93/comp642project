@@ -29,13 +29,15 @@ class MovieViewModel:
         self._genre = None
         self._cardsrcaddress = None
         self._detailbanneraddress = None
+        self._cinema_hall_list = []
 
     def __str__(self):
         return f"Movie ID: {self.id}\nTitle: {self.title}\nDescription: {self.description}\n" \
             f"Duration (mins): {self.duration_mins}\nLanguage: {self.language}\n" \
             f"Release Date: {self.release_date}\nCountry: {self.country}\n" \
             f"Genre: {self.genre}\nCard Source Address: {self.cardsrcaddress}\n" \
-            f"Detail Banner Address: {self.detailbanneraddress}"
+            f"Detail Banner Address: {self.detailbanneraddress}\n" \
+            f"Cinema Hall List: {self.cinema_hall_list}" 
 
 
     @property
@@ -217,3 +219,21 @@ class MovieViewModel:
         @param value: The source address for the movie's detail banner image.
         """
         self._detailbanneraddress = value
+
+    @property
+    def cinema_hall_list(self):
+        """!
+        @brief Getter for the movie's cinema hall list property.
+
+        @return The cinema hall list of the movie.
+        """
+        return self._cinema_hall_list
+    
+    @cinema_hall_list.setter
+    def cinema_hall_list(self, value):
+        """!
+        @brief Setter for the movie's cinema hall list property.
+
+        @param value: The cinema hall list of the movie.
+        """
+        self._cinema_hall_list = value
