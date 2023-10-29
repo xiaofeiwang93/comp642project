@@ -1,5 +1,6 @@
 import csv
-from datetime import datetime
+from datetime import datetime, timedelta
+import random
 from Models.Movies.Movie import Movie
 
 from ViewModels.MovieViewModel import MovieViewModel
@@ -26,10 +27,7 @@ class DbService:
                 writer = csv.writer(file)
                 writer.writerow(columnNameList)  # Write the header row
 
-                for row in data:
-                    writer.writerow(row)  # Write the data rows
-
-            print("Data written to the CSV file successfully.")
+            print(f"Data written to the CSV file - {databaseName} successfully.")
         except FileNotFoundError:
             print(f"File '{databaseName}' not found.")
         except Exception as e:
@@ -107,9 +105,12 @@ class DbService:
             with open(tableName, mode="r") as file:
                 reader = csv.DictReader(file)
                 for row in reader:
-                    if row.get(search_attribute).lower().find(search_value.lower()) != -1:
-                        records.append(row)
-            print(records)
+                    if search_attribute.lower().find("date") == -1:
+                        if row.get(search_attribute).lower().find(search_value.lower()) != -1:
+                            records.append(row)
+                    else:
+                        if row.get(search_attribute) == search_value:
+                            records.append(row)
             return records
         except FileNotFoundError:
             print(f"File '{tableName}' not found.")
@@ -305,68 +306,45 @@ class DbService:
         DbService.create_csv_file(DbService.screeningDbName, DbService.screeningDbNameColumns)
         DbService.db_initial_insert_screening()
     
-    def db_initial_insert_screening():
-        screening_records = [
-            {
-                'movieid': "1",
-                'date': "07/09/2023",
-                'starttime': "10:00",
-                'endtime': "12:00",
-                'hallid': "1"
-            },
-            {
-                'movieid': "2",
-                'date': "26/10/2023",
-                'starttime': "10:00",
-                'endtime': "12:00",
-                'hallid': "2"
-            },
-            {
-                'movieid': "3",
-                'date': "19/10/2023",
-                'starttime': "10:00",
-                'endtime': "12:00",
-                'hallid': "3"
-            },
-            {
-                'movieid': "4",
-                'date': "05/10/2023",
-                'starttime': "10:00",
-                'endtime': "12:00",
-                'hallid': "4"
-            },
-            {
-                'movieid': "5",
-                'date': "13/10/2023",
-                'starttime': "10:00",
-                'endtime': "12:00",
-                'hallid': "5"
-            },
-            {
-                'movieid': "6",
-                'date': "20/07/2023",
-                'starttime': "10:00",
-                'endtime': "12:00",
-                'hallid': "6"
-            },
-            {
-                'movieid': "7",
-                'date': "28/09/2023",
-                'starttime': "10:00",
-                'endtime': "12:00",
-                'hallid': "7"
-            },
-            {
-                'movieid': "8",
-                'date': "28/09/2023",
-                'starttime': "10:00",
-                'endtime': "12:00",
-                'hallid': "8"
-            }
-        ]
+    def db_initial_setup_screening():
+        DbService.create_csv_file(DbService.screeningDbName, DbService.screeningDbNameColumns)
+        DbService.db_initial_insert_screening()
 
+    import random
+
+    def db_initial_insert_screening():
+        """!
+        Dynamically generate screening records for the next 10 days for test purposes
+
+        :param date: None
+        :return: None
+        """
+        screening_records = []
+
+        # Add additional screening records for the next 10 days
+        for i in range(1, 11):
+            date = datetime.now() + timedelta(days=i)
+            date_str = date.strftime(DbService.date_format)
+            
+            # Generate a random start time for each movie
+            start_times = [f"{random.randint(10, 21)}:00" for _ in range(1, 31)]
+
+            for movieid, hallid, starttime in zip(range(1, 31), range(1, 31), start_times):
+                endtime = (int(starttime.split(":")[0]) + 2) % 24  # Assuming screenings are 2 hours long
+                endtime = f"{endtime:02d}:00"
+
+                screening_records.append({
+                    'movieid': str(movieid),
+                    'date': date_str,
+                    'starttime': starttime,
+                    'endtime': endtime,
+                    'hallid': str(hallid)
+                })
+
+        # Add the screenings to the database
         for record in screening_records:
             DbService.add_record(DbService.screeningDbName, record, DbService.screeningDbNameColumns)
+
 
     def setup_database():
         DbService.db_initial_setup_movie()

@@ -29,7 +29,7 @@ class MovieViewModel:
         self._genre = None
         self._cardsrcaddress = None
         self._detailbanneraddress = None
-        self._cinema_hall_list = []
+        self._screening_list = []
 
     def __str__(self):
         return f"Movie ID: {self.id}\nTitle: {self.title}\nDescription: {self.description}\n" \
@@ -37,8 +37,7 @@ class MovieViewModel:
             f"Release Date: {self.release_date}\nCountry: {self.country}\n" \
             f"Genre: {self.genre}\nCard Source Address: {self.cardsrcaddress}\n" \
             f"Detail Banner Address: {self.detailbanneraddress}\n" \
-            f"Cinema Hall List: {self.cinema_hall_list}" 
-
+            f"Screening List: {self.screening_list}" 
 
     @property
     def id(self):
@@ -221,19 +220,19 @@ class MovieViewModel:
         self._detailbanneraddress = value
 
     @property
-    def cinema_hall_list(self):
+    def screening_list(self):
         """!
-        @brief Getter for the movie's cinema hall list property.
+        @brief Getter for the movie's screening list property.
 
-        @return The cinema hall list of the movie.
+        @return The cinema screening list of the movie.
         """
-        return self._cinema_hall_list
+        return self._screening_list
     
-    @cinema_hall_list.setter
-    def cinema_hall_list(self, value):
+    @screening_list.setter
+    def screening_list(self, value):
         """!
-        @brief Setter for the movie's cinema hall list property.
+        @brief Setter for the movie's cinema screening list property.
 
-        @param value: The cinema hall list of the movie.
+        @param value: The cinema screening list of the movie.
         """
-        self._cinema_hall_list = value
+        self._screening_list = value
