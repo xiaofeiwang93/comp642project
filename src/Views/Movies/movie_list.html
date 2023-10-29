@@ -33,126 +33,50 @@
 
 <div class="row" >
     <div class="col-8" style="margin: 20px 0 20px 0;">
-        {% for movie in movie_list %}
-        <div class="card mb-3" style="max-width: 600px;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <a href="/movies/{{ movie.id }}">
-                        <img src="{{ movie._cardsrcaddress }}" class="img-fluid rounded-start" alt="{{ movie.title }}">
-                    </a>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ movie.title }}</h5>
-                        <button type="button" class="btn btn-secondary btn-sm">12:20 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">2:55 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">5:30 PM</button>
-                        <button type="button" class="btn btn-secondary btn-sm">6:00 PM</button>
+        {% if movie_list|length == 0 %}
+        <h3>No movies found</h3>
+        {% else %}
+            {% for movie in movie_list %}
+            <div class="card mb-3" style="max-width: 600px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <a href="/movies/{{ movie.id }}">
+                            <img src="{{ movie._cardsrcaddress }}" class="img-fluid rounded-start" alt="{{ movie.title }}">
+                        </a>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ movie.title }}</h5>
+                            <button type="button" class="btn btn-secondary btn-sm">12:20 PM</button>
+                            <button type="button" class="btn btn-secondary btn-sm">2:55 PM</button>
+                            <button type="button" class="btn btn-secondary btn-sm">5:30 PM</button>
+                            <button type="button" class="btn btn-secondary btn-sm">6:00 PM</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        {% endfor %}
+            {% endfor %}
+        {% endif %}
     </div>
-    <div class="col-4" style="margin: 20px 0 20px 0;">
-        <form>
-            <div class="accordion accordion-flush" id="accordionFlush">
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseMovie" aria-expanded="false" aria-controls="flush-collapseMovie">
-                        Movie
-                    </button>
-                    </h2>
-                    <div id="flush-collapseMovie" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
-                        <div class="accordion-body">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Default checkbox
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                <label class="form-check-label" for="flexCheckChecked">
-                                    Checked checkbox
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseLanguage" aria-expanded="false" aria-controls="flush-collapseLanguage">
-                            Language
-                        </button>
-                    </h2>
-                    <div id="flush-collapseLanguage" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
-                        <div class="accordion-body">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Default checkbox
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                <label class="form-check-label" for="flexCheckChecked">
-                                    Checked checkbox
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseGenre" aria-expanded="false" aria-controls="flush-collapseGenre">
-                            Genre
-                        </button>
-                    </h2>
-                    <div id="flush-collapseGenre" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
-                        <div class="accordion-body">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Default checkbox
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                <label class="form-check-label" for="flexCheckChecked">
-                                    Checked checkbox
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseReleaseDate" aria-expanded="false" aria-controls="flush-collapseReleaseDate">
-                            Release Date
-                        </button>
-                    </h2>
-                    <div id="flush-collapseReleaseDate" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
-                        <div class="accordion-body">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Default checkbox
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                <label class="form-check-label" for="flexCheckChecked">
-                                    Checked checkbox
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-outline-secondary" href="{{url_for('search_movie')}}" style="margin: 10px;">Search</button>
+    <div class="col-4" style="margin: 20px 0;">
+        <form method="get" action="{{ url_for('search_movies') }}">
+            <div class="mb-3">
+                <input type="text" class="form-control" name="titleSearch" id="titleSearch" placeholder="Search by Movie Titles">
             </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" name="languageSearch" id="languageSearch" placeholder="Search by Movie Language">
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" name="genreSearch" id="genreSearch" placeholder="Search by Movie Genre">
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" name="releasedateSearch" id="releasedateSearch" placeholder="Search for Movie Release Date">
+            </div>
+            <button type="submit" class="btn btn-outline-secondary" style="margin-top: 5px;">Search</button>
+            <a href="{{ url_for('view_movie_list') }}" class="btn btn-outline-secondary" style="margin-top: 5px;">Clear Search</a>
         </form>
     </div>
+    
 </div>
 
 

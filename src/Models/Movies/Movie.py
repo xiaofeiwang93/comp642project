@@ -2,14 +2,19 @@ from datetime import datetime
 from typing import List
 
 class Movie:
-    def __init__(self, title, description, duration_mins, language, release_date, country, genre):
-        self.__title = title
-        self.__description = description
-        self.__duration_mins = duration_mins
-        self.__language = language
-        self.__release_date = release_date
-        self.__country = country
-        self.__genre = genre
+    def __init__(self):
+        """!
+        @brief Constructor for the MovieModel class.
+        Initializes all properties to None.
+        """
+        self._id = None
+        self.__title = None
+        self.__description = None
+        self.__duration_mins = None
+        self.__language = None
+        self.__release_date = None
+        self.__country = None
+        self.__genre = None
         self.__screening_list = []
 
     # Getter and setter for title
@@ -83,4 +88,5 @@ class Movie:
     def getSscreenings(self):
         return self.__screening_list
 
-
+    def __str__(self):
+        return f"Movie: title={self.__title}, description={self.__description}, duration_mins={self.__duration_mins}, language={self.__language}, release_date={self.__release_date}, country={self.__country}, genre={self.__genre}, screening_list={self.__screening_list}"

@@ -1,4 +1,6 @@
 import csv
+from datetime import datetime
+from Models.Movies.Movie import Movie
 
 from ViewModels.MovieViewModel import MovieViewModel
 
@@ -13,6 +15,8 @@ class DbService:
 
     screeningDbName = f"{database_path}screening.csv"
     screeningDbNameColumns = ["id", "movieid", "date", "starttime", "endtime", "hallid"]
+
+    date_format = "%d/%m/%Y"
 
     # Function to create the initial CSV file
     def create_csv_file(databaseName, columnNameList):
@@ -114,6 +118,38 @@ class DbService:
             print(f"File '{tableName}' not found.")
         except Exception as e:
             print(f"An error occurred while updating the record: {str(e)}")
+
+    def search_records_by_multiple_attributes(tableName, search_data):
+        try:
+            print("#### movisearch_records_by_multiple_attributese_search ####")
+            print(search_data)
+
+            search_release_date = datetime.strptime(search_data.release_date, DbService.date_format)
+            records = []
+            with open(tableName, mode="r") as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    if (row.get("title").find(search_data.title) != -1 or 
+                        row.get("language").find(search_data.language) != -1 or
+                        row.get("genre").find(search_data.genre) != -1):
+                        
+                        release_date = row.get("release_date")
+                        
+                        if release_date != 'None':
+                            try:
+                                release_date = datetime.strptime(release_date, DbService.date_format)
+                                if release_date == search_release_date:
+                                    records.append(row)
+                            except ValueError:
+                                pass  # Ignore invalid date values
+                        else:
+                            records.append(row)
+        except FileNotFoundError:
+            print(f"File '{tableName}' not found.")
+            return []
+        except Exception as e:
+            print(f"An error occurred while reading records: {str(e)}")
+            return []
 
     def db_initial_setup_movie():
         create_csv_file(movieDbName, movieDbColumns)

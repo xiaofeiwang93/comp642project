@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import List
 
-from flask import render_template
+from flask import render_template, request
 from Models.Bookings.Booking import Booking
 from Models.Movies.Movie import Movie
 from Models.Movies.Screening import Screening
@@ -30,19 +30,23 @@ class MovieTicketController:
         """
         movie_list = self.movie_service.get_all_movies()
         return render_template('home.html', movie_list=movie_list)
-    
-    def search_movie():
-        print("############  inside search movie")
 
     def view_movie_list(self):
         movie_list = self.movie_service.get_all_movies()
         return render_template('./Movies/movie_list.html', movie_list=movie_list)
     
     def view_movie_detail(self, movie_id: int):
+        """!
+        Search for movies based on id.
+
+        :param id: The id of the movie.
+        :return: A Movie objects matching the id.
+
+        """
         movie = self.movie_service.get_movie_by_id(movie_id)
         return render_template('./Movies/movie_detail.html', movie=movie)
 
-    def search_movies(self, title: str, language: str, genre: str, release_date: datetime) -> List[Movie]:
+    def search_movies(self):
         """!
         Search for movies based on title, language, genre, and release date.
 
@@ -52,7 +56,16 @@ class MovieTicketController:
         :param release_date: The release date of the movie.
         :return: List of Movie objects matching the search criteria.
         """
-        pass
+
+        movie = Movie()
+        movie.title = str(request.form.get('titleSearch'))
+        movie.language = request.form.get('languageSearch')
+        movie.genre = request.form.get('genreSearch')
+        movie.release_date = request.form.get('releasedateSearch')
+
+        movie_list = self.movie_service.search_movies(movie)
+        
+        return render_template('./Movies/movie_list.html', movie_list=movie_list)
 
     def view_screenings(self, movie: Movie) -> List[Screening]:
         """!
