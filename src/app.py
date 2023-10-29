@@ -20,7 +20,7 @@ def create_app(test_config = None):
 
     app.add_url_rule('/movies', methods=get, view_func=ticketing_controller.view_movie_list)
 
-    app.add_url_rule('/movies/1', methods=get, view_func=ticketing_controller.view_movie_detail)
+    app.add_url_rule('/movies/<int:movie_id>', methods=get, view_func=ticketing_controller.view_movie_detail)
 
     app.add_url_rule('/movies/search', methods=both, view_func=ticketing_controller.search_movie)
 

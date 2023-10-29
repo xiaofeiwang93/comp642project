@@ -4,7 +4,7 @@
 <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="../static/MovieDetailBanner/TheNunII.jpg" class="d-block w-100" alt="...">
+            <img src="{{ movie.detailbanneraddress }}" class="d-block w-100" alt="...">
         </div>
     </div>
 </div>
@@ -12,18 +12,18 @@
 <div class="row" >
     <div class="col-4" style="margin: 20px 0 20px 0;">
         <div class="col-md-4" style="width: 100%;">
-            <img src="../../static/Cards/TheNunII.jpg" style="max-width: 320px;" class="img-fluid rounded-start" alt="The Nun II">
+            <img src="{{ movie.cardsrcaddress }}" style="max-width: 320px;" class="img-fluid rounded-start" alt="{{ movie.title}}">
         </div>
     </div>
     <div class="col-8 text-left" style="margin: 20px 0 20px 0; padding-left: 50px;">
-        <h1>The Num II <button style="margin-left: 10px; margin-bottom: 12px;" type="button" class="btn btn-warning">M</button></h1>
+        <h1>{{ movie.title }} <button style="margin-left: 10px; margin-bottom: 12px;" type="button" class="btn btn-warning">{{ movie.genre }}</button></h1>
         
-        <p>1956 - France. A priest is murdered. An evil is spreading. The sequel to the worldwide smash hit follows Sister Irene as she once again comes face-to-face with Valak, the demon nun.</p>
+        <p>{{ movie.description }}</p>
         <div class="row" style="padding-top: 20px;">
-            <h6>Release Date:     <span style="margin-left: 10px;">07/09/2023</span></h6>
-            <h6>Running Time:     <span style="margin-left: 10px;">110 mins</span></h6>
-            <h6>Director:         <span style="margin-left: 10px;">Michael Chaves</span></h6>
-            <h6>Cast:             <span style="margin-left: 10px;">Bonnie Aarons, Katelyn Rose Downey, Taissa Farmiga, Anna Popplewell, Storm Reid</span></h6>
+            <h6>Release Date:     <span style="margin-left: 10px;">{{ movie.release_date }}</span></h6>
+            <h6>Running Time:     <span style="margin-left: 10px;">{{ movie.duration_mins }} mins</span></h6>
+            <h6>Language:         <span style="margin-left: 10px;">{{ movie.language }}</span></h6>
+            <h6>Country:          <span style="margin-left: 10px;">{{ movie.country }}</span></h6>
         </div>
     </div>
 </div>

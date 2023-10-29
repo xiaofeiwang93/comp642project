@@ -16,9 +16,19 @@ class DbService:
 
     # Function to create the initial CSV file
     def create_csv_file(databaseName, columnNameList):
-        with open(databaseName, mode="w", newline="") as file:
-            writer = csv.writer(file)
-            writer.writerow(columnNameList)
+        try:
+            with open(databaseName, mode="w", newline="") as file:
+                writer = csv.writer(file)
+                writer.writerow(columnNameList)  # Write the header row
+
+                for row in data:
+                    writer.writerow(row)  # Write the data rows
+
+            print("Data written to the CSV file successfully.")
+        except FileNotFoundError:
+            print(f"File '{databaseName}' not found.")
+        except Exception as e:
+            print(f"An error occurred while writing data: {str(e)}")
 
     # Function to get the next available ID
     def get_next_id(filename):
@@ -36,52 +46,74 @@ class DbService:
 
     # Function to add a new record to the CSV
     def add_record(filename, record, columnNameList):
-        next_id = get_next_id(filename)
-        record['id'] = next_id
+        try:
+            next_id = get_next_id(filename)
+            record['id'] = next_id
 
-        with open(filename, 'a', newline='') as file:
-            fieldnames = columnNameList  # Use your column names
-            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            with open(filename, 'a', newline='') as file:
+                fieldnames = columnNameList  # Use your column names
+                writer = csv.DictWriter(file, fieldnames=fieldnames)
 
-            if file.tell() == 0:  # If the file is empty, write the header row
-                writer.writeheader()
+                if file.tell() == 0:  # If the file is empty, write the header row
+                    writer.writeheader()
 
-            writer.writerow(record)
-        
-        # Close the file explicitly
-        file.close()
+                writer.writerow(record)
+        except FileNotFoundError:
+            print(f"File '{filename}' not found.")
+        except Exception as e:
+            print(f"An error occurred while adding a record: {str(e)}")
 
     # Function to read all records from the CSV
     def read_all_records(tableName):
-        records = []
-        with open(tableName, mode="r") as file:
-            reader = csv.DictReader(file)
-            for row in reader:
-                records.append(row)
-        return records
+        try:
+            records = []
+            with open(tableName, mode="r") as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    records.append(row)
+            return records
+        except FileNotFoundError:
+            print(f"File '{tableName}' not found.")
+            return []
+        except Exception as e:
+            print(f"An error occurred while reading records: {str(e)}")
+            return []
 
     # Function to search for a record by ID
     def search_record_by_id(search_id, tableName):
-        with open(tableName, mode="r") as file:
-            reader = csv.DictReader(file)
-            for row in reader:
-                if row["id"] == search_id:
-                    return row
-        return None
+        try:
+            with open(tableName, mode="r", newline="") as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    if row.get("id") == str(search_id):
+                        return row
+            print("Record not found.")
+            return None
+        except FileNotFoundError:
+            print(f"File '{tableName}' not found.")
+            return None
+        except Exception as e:
+            print(f"An error occurred: {str(e)}")
+            return None
 
     # Function to update a record by ID
     def update_record_by_id(update_id, new_data, columnNameList, tableName):
-        records = read_all_records()
-        for record in records:
-            if record["ID"] == update_id:
-                record.update(new_data)
-                break
-
-        with open(tableName, mode="w", newline="") as file:
-            writer = csv.DictWriter(file, fieldnames=columnNameList)
-            writer.writeheader()
+        try:
+            records = read_all_records(tableName)
             for record in records:
-                writer.writerow(record)
+                if record.get("ID") == update_id:
+                    record.update(new_data)
+                    break
+
+            with open(tableName, mode="w", newline="") as file:
+                writer = csv.DictWriter(file, fieldnames=columnNameList)
+                writer.writeheader()
+                for record in records:
+                    writer.writerow(record)
+        except FileNotFoundError:
+            print(f"File '{tableName}' not found.")
+        except Exception as e:
+            print(f"An error occurred while updating the record: {str(e)}")
 
     def db_initial_setup_movie():
         create_csv_file(movieDbName, movieDbColumns)

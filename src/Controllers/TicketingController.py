@@ -9,7 +9,7 @@ from Models.Movies.Screening import Screening
 class MovieTicketController:
     def __init__(self, db_service, login_service, common_service, movie_service) -> None:
         """!
-        Constructor for the MovieTicketController class.
+        Constructor for the MovieTicketController class. Implement the Inversion of Control (IoC) principle here via Dependency Injection - constructor injection.
 
         :param ticket_system: An instance of the MovieTicketSystem.
         """
@@ -23,8 +23,12 @@ class MovieTicketController:
         return render_template('Common/login_view.html')
     
     def home(self):
+        """!
+        home page
+
+        :param ticket_system: None.
+        """
         movie_list = self.movie_service.get_all_movies()
-        print(movie_list.count)
         return render_template('home.html', movie_list=movie_list)
     
     def search_movie():
@@ -34,9 +38,9 @@ class MovieTicketController:
         movie_list = self.movie_service.get_all_movies()
         return render_template('./Movies/movie_list.html', movie_list=movie_list)
     
-    def view_movie_detail(self):
-        self.common_service.movieDetail()
-        return render_template('./Movies/movie_detail.html')
+    def view_movie_detail(self, movie_id: int):
+        movie = self.movie_service.get_movie_by_id(movie_id)
+        return render_template('./Movies/movie_detail.html', movie=movie)
 
     def search_movies(self, title: str, language: str, genre: str, release_date: datetime) -> List[Movie]:
         """!
@@ -47,14 +51,6 @@ class MovieTicketController:
         :param genre: The genre of the movie.
         :param release_date: The release date of the movie.
         :return: List of Movie objects matching the search criteria.
-        """
-        pass
-
-    def view_movie_details(self, movie: Movie) -> None:
-        """!
-        View details of a selected movie.
-
-        :param movie: The selected Movie object.
         """
         pass
 
