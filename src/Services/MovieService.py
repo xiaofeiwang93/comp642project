@@ -51,9 +51,6 @@ class MovieService:
         """
         movie_view_models = []
 
-        print("### search_movies in Moive Service###")
-        print(movie_search)
-
         movie_list = DbService.search_records_by_multiple_attributes(DbService.movieDbName, movie_search)
 
         for movie_info in movie_list:
