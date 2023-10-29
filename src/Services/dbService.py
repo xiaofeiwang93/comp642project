@@ -100,6 +100,23 @@ class DbService:
             print(f"An error occurred: {str(e)}")
             return None
 
+    def search_records_by_attribute(search_attribute, search_value, tableName):
+        try:
+            records = []
+            with open(tableName, mode="r") as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    if row.get(search_attribute).lower().find(search_value.lower()) != -1:
+                        records.append(row)
+            print(records)
+            return records
+        except FileNotFoundError:
+            print(f"File '{tableName}' not found.")
+            return []
+        except Exception as e:
+            print(f"An error occurred while reading records: {str(e)}")
+            return []
+
     # Function to update a record by ID
     def update_record_by_id(update_id, new_data, columnNameList, tableName):
         try:

@@ -18,14 +18,17 @@
 <div style="margin: 20px 0 20px 0;">
 <div class="row">
     {% for movie in movie_list %}
+    
         <div class="col-md-3">
-            <div class="card" style="width: 17rem; margin-top: 20px;">
-                <img src="{{ movie.cardsrcaddress }}" class="card-img-top" alt="{{ movie.title }}" style="height: 24rem;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ movie.title }}</h5>
-                    <a href="#" class="btn btn-dark">Book Now</a>
+            <a href="/movies/{{ movie.id }}" style="color: black;">
+                <div class="card" style="width: 17rem; margin-top: 20px;">
+                    <img src="{{ movie.cardsrcaddress }}" class="card-img-top" alt="{{ movie.title }}" style="height: 24rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ movie.title }}</h5>
+                        <a href="/movies/{{ movie.id }}" class="btn btn-dark">Book Now</a>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
     {% endfor %}
 </div>

@@ -24,6 +24,8 @@ def create_app(test_config = None):
 
     app.add_url_rule('/movies/search', methods=both, view_func=ticketing_controller.search_movies)
 
+    app.add_url_rule('/movies/search/title', methods=both, view_func=ticketing_controller.search_movies_by_title)
+
     # db_initial_setup_movie()
 
     return app

@@ -60,6 +60,24 @@ class MovieService:
 
         return movie_view_models
 
+    def search_movies_by_title(title: str) -> List[MovieViewModel]:
+        """!
+        Search for movies based on title.
+
+        :param title: The title of the movie to search for.
+        :return: List of Movie View Model objects matching the search criteria.
+        """
+        movie_view_models = []
+
+        movie_list = DbService.search_records_by_attribute('title', title, DbService.movieDbName)
+
+        for movie_info in movie_list:
+            movie_view_model = MovieService.map_movie_view_model(movie_info)
+            MovieService.get_movie_media(movie_view_model.id, movie_view_model)
+            movie_view_models.append(movie_view_model)
+
+        return movie_view_models
+
     def map_movie_view_model(movie_info) -> List[MovieViewModel]:
         """!
         Map the movie_list from dictionary into movie view model.

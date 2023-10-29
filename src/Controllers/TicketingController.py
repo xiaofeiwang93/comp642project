@@ -66,6 +66,20 @@ class MovieTicketController:
         movie_list = self.movie_service.search_movies(movie)
         
         return render_template('./Movies/movie_list.html', movie_list=movie_list)
+    
+    def search_movies_by_title(self):
+        """!
+        Search for movies based on title.
+
+        :param title: The title of the movie to search for.
+        :return: List of Movie objects matching the search criteria.
+        """
+
+        title = request.form.get('search')
+
+        movie_list = self.movie_service.search_movies_by_title(title)
+        
+        return render_template('./Movies/movie_list.html', movie_list=movie_list)
 
     def view_screenings(self, movie: Movie) -> List[Screening]:
         """!
