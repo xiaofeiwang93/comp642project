@@ -59,7 +59,7 @@
         {% endif %}
     </div>
     <div class="col-4" style="margin: 20px 0;">
-        <form method="get" action="{{ url_for('search_movies') }}">
+        <form method="post" action="{{ url_for('search_movies') }}">
             <div class="mb-3">
                 <input type="text" class="form-control" name="titleSearch" id="titleSearch" placeholder="Search by Movie Titles">
             </div>

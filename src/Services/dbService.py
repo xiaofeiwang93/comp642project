@@ -123,27 +123,30 @@ class DbService:
         try:
             print("#### movisearch_records_by_multiple_attributese_search ####")
             print(search_data)
-
-            search_release_date = datetime.strptime(search_data.release_date, DbService.date_format)
+            
             records = []
             with open(tableName, mode="r") as file:
                 reader = csv.DictReader(file)
                 for row in reader:
-                    if (row.get("title").find(search_data.title) != -1 or 
-                        row.get("language").find(search_data.language) != -1 or
-                        row.get("genre").find(search_data.genre) != -1):
+                    if ((row.get("title").lower().find(search_data.title) != -1 and search_data.title.lower() != '') or
+                        (row.get("language").lower().find(search_data.language) != -1 and search_data.language.lower() != '') or
+                        (row.get("genre").lower().find(search_data.genre) != -1) and search_data.genre.lower() != ''):
                         
                         release_date = row.get("release_date")
                         
-                        if release_date != 'None':
+                        if search_data.release_date != 'None' and search_data.release_date != '':
                             try:
                                 release_date = datetime.strptime(release_date, DbService.date_format)
+                                search_release_date = datetime.strptime(search_data.release_date, DbService.date_format)
                                 if release_date == search_release_date:
                                     records.append(row)
                             except ValueError:
                                 pass  # Ignore invalid date values
                         else:
                             records.append(row)
+            print("#### search_records_by_multiple_attributes - records ####")
+            print(records)
+            return records
         except FileNotFoundError:
             print(f"File '{tableName}' not found.")
             return []

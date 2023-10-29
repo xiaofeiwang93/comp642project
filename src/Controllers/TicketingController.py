@@ -58,7 +58,7 @@ class MovieTicketController:
         """
 
         movie = Movie()
-        movie.title = str(request.form.get('titleSearch'))
+        movie.title = request.form.get('titleSearch')
         movie.language = request.form.get('languageSearch')
         movie.genre = request.form.get('genreSearch')
         movie.release_date = request.form.get('releasedateSearch')
